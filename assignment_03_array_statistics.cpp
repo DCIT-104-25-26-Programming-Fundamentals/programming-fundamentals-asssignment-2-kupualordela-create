@@ -42,3 +42,63 @@
 #include <iostream>
 using namespace std;
 
+int sumArray(int arr[], int n) {
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += arr[i];
+    }
+    return sum;
+}
+
+double averageArray(int arr[], int n) {
+    if (n == 0) return 0;
+    return static_cast<double>(sumArray(arr, n)) / n;
+}
+
+int findMaximum(int arr[], int n) {
+    int max = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+int findMinimum(int arr[], int n) {
+    int min = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+    }
+    return min;
+}
+
+int main() {
+    int n;
+
+    cout << "How many numbers? ";
+    cin >> n;
+
+    if (n <= 0) {
+        cout << "Error: Number of elements must be a positive integer." << endl;
+        return 1;
+    }
+
+    int* arr = new int[n];
+
+    for (int i = 0; i < n; i++) {
+        cout << "Enter number " << (i + 1) << ": ";
+        cin >> arr[i];
+    }
+
+    cout << "\nResults:" << endl;
+    cout << "Sum:     " << sumArray(arr, n) << endl;
+    cout << "Average: " << averageArray(arr, n) << endl;
+    cout << "Maximum: " << findMaximum(arr, n) << endl;
+    cout << "Minimum: " << findMinimum(arr, n) << endl;
+
+    delete[] arr;
+    return 0;
+}
